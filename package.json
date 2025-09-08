@@ -13,16 +13,36 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "test": "jest",
+    "test:unit": "jest --testPathIgnorePatterns=integration",
+    "test:integration": "jest --testPathPatterns=integration",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["beaglegaze-js-sdk", "tracking", "metering", "payments", "blockchain"],
+  "keywords": [
+    "beaglegaze-js-sdk",
+    "tracking",
+    "metering",
+    "payments",
+    "blockchain"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-commonjs": "^25.0.7",
-    "rollup": "^4.9.6",
-    "jest": "^30.0.5"
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "jest": "^30.0.5",
+    "rollup": "^4.9.6"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "ethers": "^6.15.0",
+    "testcontainers": "^11.5.1",
+    "winston": "^3.17.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "__tests__/test-helpers"
+    ]
   }
 }
