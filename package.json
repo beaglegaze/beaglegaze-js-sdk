@@ -40,9 +40,26 @@
     "winston": "^3.17.0"
   },
   "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js",
+      "**/__tests__/**/*.spec.js"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "__tests__/test-helpers"
+      "__tests__/test-helpers",
+      "__tests__/test-data"
+    ],
+    "projects": [
+      {
+        "displayName": "unit",
+        "testMatch": ["<rootDir>/__tests__/unit/**/*.test.js"]
+      },
+      {
+        "displayName": "integration",
+        "testMatch": ["<rootDir>/__tests__/integration/**/*.test.js"],
+        "maxWorkers": 1,
+        "runInBand": true
+      }
     ]
   }
 }
