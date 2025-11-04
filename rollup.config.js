@@ -28,6 +28,7 @@ module.exports = {
   external: [
     // Mark Node.js built-ins and peer dependencies as external
     'ethers',
+    'winston', // Add winston as external dependency
     'fs', 
     'path',
     'crypto',

@@ -16,10 +16,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Update submodules to use HTTPS
+      run: |
+        git config --file .gitmodules submodule.contracts.url https://github.com/beaglegaze/beaglegaze-web3.git
+        git submodule sync
+        git submodule update --init --recursive
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Build custom Docker image
+      run: docker build -t hardhat-testnet contracts/eth-dev-node/.
     - name: Install dependencies
       run: npm install
     - name: Build
