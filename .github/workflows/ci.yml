@@ -15,10 +15,10 @@ jobs:
         node-version: [20.x, 22.x]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Checkout submodules
-      run: git submodule update --init --recursive
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'true'
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
