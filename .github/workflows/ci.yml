@@ -18,7 +18,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Checkout submodules
-      run: git submodule update --init --depth=3
+      run: git submodule update --init --depth=4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
