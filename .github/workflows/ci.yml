@@ -17,13 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        submodules: false
+        submodules: true
         token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Checkout submodules manually
-      run: |
-        git config --file .gitmodules submodule.contracts.url https://github.com/beaglegaze/beaglegaze-web3.git
-        git submodule sync
-        git submodule update --init --depth=3 contracts
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
