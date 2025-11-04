@@ -32,7 +32,7 @@ class EthereumTestnet {
 
   async waitForNetwork() {
     const maxRetries = 30;
-    const retryDelay = 1000;
+    const retryDelay = 2000;
     
     for (let i = 0; i < maxRetries; i++) {
       try {
