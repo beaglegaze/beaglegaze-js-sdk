@@ -17,13 +17,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        submodules: recursive
+        submodules: false
         token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Update submodules to use HTTPS
+    - name: Checkout submodules manually
       run: |
         git config --file .gitmodules submodule.contracts.url https://github.com/beaglegaze/beaglegaze-web3.git
         git submodule sync
-        git submodule update --init --recursive
+        git submodule update --init --depth=3 contracts
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
