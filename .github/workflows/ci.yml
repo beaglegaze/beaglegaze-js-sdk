@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [feat/*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Checkout submodules
+        run: git submodule update --init --depth=4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Build custom Docker image
+        run: ./contracts/build.sh contracts
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build --if-present
+      - name: Run tests
+        run: npm run test
